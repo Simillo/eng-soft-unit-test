@@ -3,6 +3,8 @@ const StringCalculator = require('../src/StringCalculator');
 
 const sc = new StringCalculator();
 
+const err = new TypeError('Illegal salmon!');
+
 describe('add()', () => {
 
   it('deve adicionar dois números de uma string', () => {
@@ -18,5 +20,10 @@ describe('add()', () => {
   it('deve adicionar os números com quebras de linhas', () => {
     const str = '1\n2,3';
     expect(sc.add(str)).to.be.equal(6);
+  });
+
+  it('não deve aceitar quebra de linha seguido de virgula', () => {
+    const str = '1,\n2';
+    expect(sc.add(str)).to.throw(err);
   });
 })
