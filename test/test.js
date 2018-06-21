@@ -33,4 +33,13 @@ describe('add()', () => {
     const str = '//;\n1;2;3';
     expect(StringCalculator.add(str)).to.be.equal(6);
   });
+
+  it('não deve aceitar números negativos e lista-los', () => {
+    const str = '1,2,-3,3,-5,-10,4';
+    assert.throws(
+      () => StringCalculator.add(str),
+      Error,
+      'Negativos não permitidos: -3, -5, -10.'
+    );
+  });
 })

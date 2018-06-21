@@ -6,7 +6,10 @@ class StringCalculator {
       str = str.replace(/^\/\/./, '');
     }
 
-    const rgxNewLine = new RegExp(`(\\${demilitador}\\n|\\n\\${demilitador})`, 'gi')
+    const numNegativos = str.match(/\-\d{1,}/g);
+    if (numNegativos) throw Error(`Negativos não permitidos: ${numNegativos.join(', ')}.`);
+
+    const rgxNewLine = new RegExp(`(\\${demilitador}\\n|\\n\\${demilitador})`, 'gi');
     if (str.match(rgxNewLine)) throw new Error('Formato inválido para string.');
 
     const arr = str
