@@ -1,9 +1,10 @@
 class StringCalculator {
   static add (str) {
     let demilitador = ',';
+    const rgxDemilitador = /^\/\/(.)/;
     if (/^\/\/.*/gi.test(str)) {
-      demilitador = str.match(/^\/\/(.)/)[1];
-      str = str.replace(/^\/\/./, '');
+      demilitador = str.match(rgxDemilitador)[1];
+      str = str.replace(rgxDemilitador, '');
     }
 
     const numNegativos = str.match(/\-\d{1,}/g);
